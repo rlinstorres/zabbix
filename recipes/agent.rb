@@ -1,6 +1,6 @@
 #
-# Cookbook:: zabbix
-# Recipe:: default
+# Cookbook:: .
+# Recipe:: agent
 #
 # Copyright:: 2018, Jailson Silva
 #
@@ -16,7 +16,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe 'zabbix::repo'
-include_recipe 'zabbix::server'
-include_recipe 'zabbix::frontend'
-include_recipe 'zabbix::proxy'

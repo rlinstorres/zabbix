@@ -1,6 +1,6 @@
 #
-# Cookbook:: zabbix
-# Recipe:: default
+# Cookbook:: .
+# Recipe:: repo
 #
 # Copyright:: 2018, Jailson Silva
 #
@@ -16,7 +16,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe 'zabbix::repo'
-include_recipe 'zabbix::server'
-include_recipe 'zabbix::frontend'
-include_recipe 'zabbix::proxy'
+remote_file '/opt/zabbix-release_3.4-1+xenial_all.deb' do
+  source 'http://repo.zabbix.com/zabbix/3.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.4-1+xenial_all.deb'
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create
+end
+
+execute 'Configure Zabbix repos' do
+  command 'dpkg -i /opt/zabbix-release_3.4-1+xenial_all.deb'
+  action :run
+end
+
+apt_update 'Update repos' do
+  action :update
+end

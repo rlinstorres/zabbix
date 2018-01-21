@@ -1,6 +1,6 @@
 #
 # Cookbook:: zabbix
-# Spec:: default
+# Spec:: repo
 #
 # Copyright:: 2018, Jailson Silva
 #
@@ -19,7 +19,7 @@
 
 require 'spec_helper'
 
-describe 'zabbix::default' do
+describe 'zabbix::repo' do
   context 'When all attributes are default, on an Ubuntu 16.04' do
     let(:chef_run) do
       # for a complete list of available platforms and versions see:
@@ -32,12 +32,16 @@ describe 'zabbix::default' do
       expect { chef_run }.to_not raise_error
     end
 
-    before do
-      stub_command("mysql -uzabbix -hlocalhost -pzabbix -Dzabbix -e'describe users'").and_return(true)
+    it 'Download zabbix package' do
+      expect(chef_run).to create_remote_file('/opt/zabbix-release_3.4-1+xenial_all.deb')
     end
 
-    it 'Included Recipes' do
-      expect(chef_run).to include_recipe('zabbix::repo')
+    it 'Install zabbix repo pakacge' do
+      expect(chef_run).to run_execute('Configure Zabbix repos')
+    end
+
+    it 'Update repository' do
+      expect(chef_run).to update_apt_update('Update repos')
     end
   end
 end

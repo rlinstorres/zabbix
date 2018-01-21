@@ -1,6 +1,6 @@
 #
-# Cookbook:: zabbix
-# Recipe:: default
+# Cookbook:: .
+# Recipe:: frontend
 #
 # Copyright:: 2018, Jailson Silva
 #
@@ -17,6 +17,14 @@
 # limitations under the License.
 
 include_recipe 'zabbix::repo'
-include_recipe 'zabbix::server'
-include_recipe 'zabbix::frontend'
-include_recipe 'zabbix::proxy'
+
+apt_package 'zabbix-frontend-php' do
+  action :install
+end
+
+template '/etc/apache2/conf-enabled/zabbix.conf' do
+  source 'apache.conf'
+  owner 'zabbix'
+  group 'zabbix'
+  mode '0644'
+end

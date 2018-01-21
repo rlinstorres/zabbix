@@ -1,6 +1,6 @@
 #
-# Cookbook:: zabbix
-# Recipe:: default
+# Cookbook:: .
+# Recipe:: server
 #
 # Copyright:: 2018, Jailson Silva
 #
@@ -17,6 +17,20 @@
 # limitations under the License.
 
 include_recipe 'zabbix::repo'
-include_recipe 'zabbix::server'
-include_recipe 'zabbix::frontend'
-include_recipe 'zabbix::proxy'
+
+apt_package 'zabbix-server-mysql' do
+  action :install
+end
+
+execute 'Initial DB import' do
+  command "zcat /usr/share/doc/zabbix-server-mysql/create.sql.gz | mysql -u#{node['zabbix']['dbuser']} -h#{node['zabbix']['dbhost']} -p#{node['zabbix']['dbpass']} -D#{node['zabbix']['dbname']}"
+  action :run
+  not_if "mysql -uzabbix -hlocalhost -pzabbix -Dzabbix -e'describe users'"
+end
+
+template '/etc/zabbix/zabbix_server.conf' do
+  source 'zabbix_server.conf'
+  owner 'zabbix'
+  group 'zabbix'
+  mode '0644'
+end

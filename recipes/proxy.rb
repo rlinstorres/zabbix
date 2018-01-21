@@ -1,6 +1,6 @@
 #
-# Cookbook:: zabbix
-# Recipe:: default
+# Cookbook:: .
+# Recipe:: proxy
 #
 # Copyright:: 2018, Jailson Silva
 #
@@ -17,6 +17,21 @@
 # limitations under the License.
 
 include_recipe 'zabbix::repo'
-include_recipe 'zabbix::server'
-include_recipe 'zabbix::frontend'
-include_recipe 'zabbix::proxy'
+
+apt_package 'zabbix-proxy-mysql' do
+  action :install
+end
+
+execute 'Initial DB import' do
+  command "zcat /usr/share/doc/zabbix-server-mysql/create.sql.gz | mysql -u#{node['zabbix']['proxy_dbuser']} -h#{node['zabbix']['proxy_dbhost']} -p#{node['zabbix']['proxy_dbpass']} -D#{node['zabbix']['proxy_dbname']}"
+  action :run
+  not_if "mysql -uzabbix -hlocalhost -pzabbix -Dzabbix -e'describe users'"
+end
+
+template '/etc/zabbix/zabbix_proxy.conf' do
+  source 'zabbix_proxy.conf'
+  owner 'zabbix'
+  group 'zabbix'
+  mode '0644'
+  action :create
+end

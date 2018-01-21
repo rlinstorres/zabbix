@@ -1,6 +1,6 @@
 #
 # Cookbook:: zabbix
-# Spec:: default
+# Spec:: Frontend
 #
 # Copyright:: 2018, Jailson Silva
 #
@@ -19,7 +19,7 @@
 
 require 'spec_helper'
 
-describe 'zabbix::default' do
+describe 'zabbix::frontend' do
   context 'When all attributes are default, on an Ubuntu 16.04' do
     let(:chef_run) do
       # for a complete list of available platforms and versions see:
@@ -36,8 +36,16 @@ describe 'zabbix::default' do
       stub_command("mysql -uzabbix -hlocalhost -pzabbix -Dzabbix -e'describe users'").and_return(true)
     end
 
-    it 'Included Recipes' do
+    it 'Include Recipe repos' do
       expect(chef_run).to include_recipe('zabbix::repo')
+    end
+
+    it 'Install zabbix frontend' do
+      expect(chef_run).to install_apt_package('zabbix-frontend-php')
+    end
+
+    it 'Create Template zabbix conf' do
+      expect(chef_run).to create_template('/etc/apache2/conf-enabled/zabbix.conf')
     end
   end
 end
