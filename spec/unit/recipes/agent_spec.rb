@@ -1,5 +1,5 @@
 #
-# Cookbook:: .
+# Cookbook:: zabbix
 # Spec:: default
 #
 # Copyright:: 2018, Jailson Silva
@@ -19,7 +19,7 @@
 
 require 'spec_helper'
 
-describe '.::agent' do
+describe 'zabbix::agent' do
   context 'When all attributes are default, on an Ubuntu 16.04' do
     let(:chef_run) do
       # for a complete list of available platforms and versions see:
@@ -30,6 +30,18 @@ describe '.::agent' do
 
     it 'converges successfully' do
       expect { chef_run }.to_not raise_error
+    end
+
+    it 'Include repo recipe' do
+      expect(chef_run).to include_recipe('zabbix::repo')
+    end
+
+    it 'Install Agent package' do
+      expect(chef_run).to install_apt_package('zabbix-agent')
+    end
+
+    it 'Start zabbix-agent' do
+      expect(chef_run).to start_service('zabbix-agent')
     end
   end
 end
