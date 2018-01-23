@@ -35,17 +35,11 @@
 # end
 
 zabbix_install_agent 'zabbix-agent' do
-  version '3.4.1'
-  action  :install
+  action :install
 end
 
-zabbix_configure_agent 'zabbix' do
-  hostname 'localhost'
-  server 'localhost'
-  serveractive 'localhost'
-  template 'zabbix_agentd.conf'
+zabbix_configure_agent 'zabbix_agentd.conf' do
+  action :configure
+  template 'zabbix/zabbix_agentd.conf'
   cookbook 'zabbix'
-  variables(
-    logfiles: '/var/log/teste'
-  )
 end

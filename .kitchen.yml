@@ -18,7 +18,7 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[zabbix::default]
+      - recipe[zabbix::agent]
     verifier:
       inspec_tests:
         - test/smoke/default
