@@ -32,16 +32,20 @@ describe 'zabbix::agent' do
       expect { chef_run }.to_not raise_error
     end
 
-    it 'Include repo recipe' do
-      expect(chef_run).to include_recipe('zabbix::repo')
+    it 'Custom Resource zabbix_install' do
+      expect(chef_run).to install_zabbix_install_agent('zabbix-agent')
     end
 
-    it 'Install Agent package' do
-      expect(chef_run).to install_apt_package('zabbix-agent')
-    end
+    # it 'Include repo recipe' do
+    #   expect(chef_run).to include_recipe('zabbix::repo')
+    # end
 
-    it 'Start zabbix-agent' do
-      expect(chef_run).to start_service('zabbix-agent')
-    end
+    # it 'Install Agent package' do
+    #   expect(chef_run).to install_apt_package('zabbix-agent')
+    # end
+
+    # it 'Start zabbix-agent' do
+    #   expect(chef_run).to start_service('zabbix-agent')
+    # end
   end
 end

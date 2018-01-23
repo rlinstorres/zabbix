@@ -34,3 +34,10 @@ template '/etc/zabbix/zabbix_server.conf' do
   group 'zabbix'
   mode '0644'
 end
+
+# zabbix_install_server do
+#   version
+#   template
+#   cookbook
+#   variables
+# end

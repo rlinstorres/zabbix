@@ -28,3 +28,10 @@ template '/etc/apache2/conf-enabled/zabbix.conf' do
   group 'zabbix'
   mode '0644'
 end
+
+# zabbix_install_frontend do
+#   version
+#   template
+#   cookbook
+#   variables
+# end

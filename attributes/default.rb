@@ -11,3 +11,9 @@ default['zabbix']['proxy_dbuser'] = 'zabbix_proxy'
 default['zabbix']['proxy_dbhost'] = 'localhost'
 default['zabbix']['proxy_dbpass'] = 'zabbix_proxy'
 default['zabbix']['proxy_dbname'] = 'zabbix_proxy'
+
+# Zabbix Agent confs
+default['zabbix']['agent_conf_dir'] = '/etc/zabbix/zabbix_agentd.conf'
+default['zabbix']['hostname'] = 'localhost'
+default['zabbix']['server'] = 'localhost'
+default['zabbix']['serveractive'] = 'localhost'

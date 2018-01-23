@@ -35,3 +35,10 @@ template '/etc/zabbix/zabbix_proxy.conf' do
   mode '0644'
   action :create
 end
+
+# zabbix_install_proxy do
+#   version
+#   template
+#   cookbook
+#   variables
+# end
