@@ -36,16 +36,20 @@ describe 'zabbix::frontend' do
       stub_command("mysql -uzabbix -hlocalhost -pzabbix -Dzabbix -e'describe users'").and_return(true)
     end
 
-    it 'Include Recipe repos' do
-      expect(chef_run).to include_recipe('zabbix::repo')
-    end
+    # it 'Include Recipe repos' do
+    #   expect(chef_run).to include_recipe('zabbix::repo')
+    # end
 
-    it 'Install zabbix frontend' do
-      expect(chef_run).to install_apt_package('zabbix-frontend-php')
-    end
+    # it 'Install zabbix frontend' do
+    #   expect(chef_run).to install_apt_package('zabbix-frontend-php')
+    # end
 
-    it 'Create Template zabbix conf' do
-      expect(chef_run).to create_template('/etc/apache2/conf-enabled/zabbix.conf')
+    # it 'Create Template zabbix conf' do
+    #   expect(chef_run).to create_template('/etc/apache2/conf-enabled/zabbix.conf')
+    # end
+
+    it 'Install and configure zabbix proxy' do
+      expect(chef_run).to install_zabbix_install_frontend('zabbix-proxy')
     end
   end
 end
