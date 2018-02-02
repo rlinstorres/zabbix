@@ -38,8 +38,8 @@ zabbix_install_agent 'zabbix-agent' do
   action :install
 end
 
-zabbix_configure_agent 'zabbix_agentd.conf' do
-  action :configure
+zabbix_configure_agent 'zabbix' do
   template 'zabbix/zabbix_agentd.conf'
   cookbook 'zabbix'
+  action :configure
 end

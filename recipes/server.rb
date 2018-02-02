@@ -35,9 +35,8 @@ template '/etc/zabbix/zabbix_server.conf' do
   mode '0644'
 end
 
-# zabbix_install_server do
-#   version
-#   template
-#   cookbook
-#   variables
-# end
+zabbix_install_server 'Jailson' do
+  db_type 'mysql'
+  version '3.6.1'
+  action  :install
+end

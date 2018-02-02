@@ -1,6 +1,6 @@
 # To learn more about Custom Resources, see https://docs.chef.io/custom_resources.html
 
-property :version,  [String, Array]
+property :version, [String, Array]
 property :template,  String
 property :cookbook,  String
 property :source,    String

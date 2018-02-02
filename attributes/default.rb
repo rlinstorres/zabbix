@@ -16,6 +16,5 @@ default['zabbix']['proxy_hostname'] = 'Zabbix proxy'
 
 # Zabbix Agent confs
 default['zabbix']['agent_conf_dir'] = '/etc/zabbix'
-default['zabbix']['hostname'] = 'localhost'
 default['zabbix']['server'] = 'localhost'
 default['zabbix']['server_active'] = 'localhost'

@@ -37,11 +37,7 @@ describe 'zabbix::agent' do
     end
 
     it 'Configure Zabbix custom resource' do
-      expect(chef_run).to configure_zabbix_configure_agent('zabbix').with(
-        hostname: 'localhost',
-        server: 'localhost',
-        server_active: 'localhost'
-      )
+      expect(chef_run).to configure_zabbix_configure_agent('zabbix')
     end
 
     # it 'Include repo recipe' do

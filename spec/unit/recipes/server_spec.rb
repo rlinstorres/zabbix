@@ -51,5 +51,12 @@ describe 'zabbix::server' do
     it 'Create Template zabbix_server_conf' do
       expect(chef_run).to create_template('/etc/zabbix/zabbix_server.conf')
     end
+
+    it 'Install with custom resource' do
+      expect(chef_run).to install_zabbix_install_server('Jailson').with(
+        db_type: 'mysql',
+        version: '3.6.1'
+      )
+    end
   end
 end
