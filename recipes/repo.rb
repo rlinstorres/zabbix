@@ -29,6 +29,6 @@ execute 'Configure Zabbix repos' do
   action :run
 end
 
-apt_update 'Update repos' do
+apt_update 'Update repo' do
   action :update
 end

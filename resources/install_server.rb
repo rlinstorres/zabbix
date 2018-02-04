@@ -1,6 +1,5 @@
 # To learn more about Custom Resources, see https://docs.chef.io/custom_resources.html
 
-property :db_type, String
 property :version, String
 property :template, [String, Array]
 property :cookbook, String
@@ -8,20 +7,25 @@ property :variables, Hash, default: {}
 
 action :install do
   include_recipe 'zabbix::repo'
+  apt_package 'zabbix-server-mysql' do
+    action :install
+  end
 
-  if new_resource.db_type == 'mysql'
+  execute 'Initial DB import' do
+    command "zcat /usr/share/doc/zabbix-server-mysql/create.sql.gz | mysql -u#{node['zabbix']['dbuser']} -h#{node['zabbix']['dbhost']} -p#{node['zabbix']['dbpass']} -D#{node['zabbix']['dbname']}"
+    action :run
+    not_if "mysql -u#{node['zabbix']['dbuser']} -h#{node['zabbix']['dbhost']} -p#{node['zabbix']['dbpass']} -D#{node['zabbix']['dbname']} -e'describe users'"
+  end
 
-    apt_package 'zabbix-server-mysql' do
-      action :install
+  if new_resource.template
+    # use declare_resource so we can have a property also named template
+    declare_resource(:template, "#{node['zabbix']['conf_dir']}/#{new_resource.name}") do
+      source new_resource.template
+      cookbook new_resource.cookbook
+      variables(new_resource.variables)
     end
-
-    execute 'Initial DB import' do
-      command "zcat /usr/share/doc/zabbix-server-mysql/create.sql.gz | mysql -u#{node['zabbix']['dbuser']} -h#{node['zabbix']['dbhost']} -p#{node['zabbix']['dbpass']} -D#{node['zabbix']['dbname']}"
-      action :run
-      not_if "mysql -uzabbix -hlocalhost -pzabbix -Dzabbix -e'describe users'"
-    end
-
-    template '/etc/zabbix/zabbix_server.conf' do
+  else
+    declare_resource(:template, "#{node['zabbix']['conf_dir']}/zabbix_server.conf") do
       source 'zabbix_server.conf'
       owner 'zabbix'
       group 'zabbix'

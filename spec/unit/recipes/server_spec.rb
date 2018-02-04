@@ -16,7 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 require 'spec_helper'
 
 describe 'zabbix::server' do
@@ -24,7 +23,7 @@ describe 'zabbix::server' do
     let(:chef_run) do
       # for a complete list of available platforms and versions see:
       # https://github.com/customink/fauxhai/blob/master/PLATFORMS.md
-      runner = ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '16.04')
+      runner = ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '16.04', step_into: ['zabbix_install_server'])
       runner.converge(described_recipe)
     end
 
@@ -33,7 +32,7 @@ describe 'zabbix::server' do
     end
 
     before do
-      stub_command("mysql -uzabbix -hlocalhost -pzabbix -Dzabbix -e'describe users'").and_return(true)
+      stub_command("mysql -uzabbix -hlocalhost -pzabbix -Dzabbix -e'describe users'").and_return(false)
     end
 
     it 'Include Recipe repos' do
@@ -52,9 +51,8 @@ describe 'zabbix::server' do
       expect(chef_run).to create_template('/etc/zabbix/zabbix_server.conf')
     end
 
-    it 'Install with custom resource' do
+    it 'Install Zabbix Server with custom resource' do
       expect(chef_run).to install_zabbix_install_server('Jailson').with(
-        db_type: 'mysql',
         version: '3.6.1'
       )
     end

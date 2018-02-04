@@ -41,7 +41,7 @@ describe 'zabbix::repo' do
     end
 
     it 'Update repository' do
-      expect(chef_run).to update_apt_update('Update repos')
+      expect(chef_run).to update_apt_update('Update repo')
     end
   end
 end

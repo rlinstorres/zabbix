@@ -33,7 +33,7 @@ describe 'zabbix::proxy' do
     end
 
     before do
-      stub_command("mysql -uzabbix -hlocalhost -pzabbix -Dzabbix -e'describe users'").and_return(true)
+      stub_command("mysql -uzabbix -hlocalhost -pzabbix -Dzabbix -e'describe users'").and_return(false)
     end
 
     it 'Include Recipe repos' do
@@ -49,7 +49,7 @@ describe 'zabbix::proxy' do
     end
 
     it 'Create Template zabbix conf' do
-      expect(chef_run).to create_template('/etc/zabbix/zabbix_proxy.conf')  
+      expect(chef_run).to create_template('/etc/zabbix/zabbix_proxy.conf')
     end
   end
 end
