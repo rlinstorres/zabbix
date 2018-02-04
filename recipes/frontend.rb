@@ -16,22 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# include_recipe 'zabbix::repo'
-
-# apt_package 'zabbix-frontend-php' do
-#   action :install
-# end
-
-# template '/etc/apache2/conf-enabled/zabbix.conf' do
-#   source 'apache.conf'
-#   owner 'zabbix'
-#   group 'zabbix'
-#   mode '0644'
-# end
-
 zabbix_install_frontend 'zabbix-proxy' do
-  version '1.0'
-  template 'zabbix_proxy.conf'
-  cookbook  'zabbix'
-  source    'zabbix/zabbix_proxy.conf'
+  action :install
 end

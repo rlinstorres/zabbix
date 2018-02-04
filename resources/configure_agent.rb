@@ -22,4 +22,3 @@ action :configure do
     end
   end
 end
-

@@ -16,7 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 require 'spec_helper'
 
 describe 'zabbix::proxy' do
@@ -24,7 +23,7 @@ describe 'zabbix::proxy' do
     let(:chef_run) do
       # for a complete list of available platforms and versions see:
       # https://github.com/customink/fauxhai/blob/master/PLATFORMS.md
-      runner = ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '16.04')
+      runner = ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '16.04', step_into: ['zabbix_install_proxy'])
       runner.converge(described_recipe)
     end
 
@@ -33,7 +32,7 @@ describe 'zabbix::proxy' do
     end
 
     before do
-      stub_command("mysql -uzabbix -hlocalhost -pzabbix -Dzabbix -e'describe users'").and_return(false)
+      stub_command("mysql -uzabbix_proxy -hlocalhost -pzabbix_proxy -Dzabbix_proxy -e'describe users'").and_return(false)
     end
 
     it 'Include Recipe repos' do
@@ -50,6 +49,10 @@ describe 'zabbix::proxy' do
 
     it 'Create Template zabbix conf' do
       expect(chef_run).to create_template('/etc/zabbix/zabbix_proxy.conf')
+    end
+
+    it 'Install proxy as custom resource' do
+      expect(chef_run).to install_zabbix_install_proxy('foo')
     end
   end
 end
