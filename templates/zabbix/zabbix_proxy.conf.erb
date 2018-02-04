@@ -21,7 +21,7 @@
 # Default:
 # Server=
 
-Server=<%= ['zabbix']['zabbix_server'] %>
+Server=<%= node['zabbix']['zabbix_server'] %>
 
 ### Option: ServerPort
 #	Port of Zabbix trapper on Zabbix server.
@@ -162,7 +162,7 @@ PidFile=/var/run/zabbix/zabbix_proxy.pid
 # Default:
 # DBName=
 
-DBName=<%= ['zabbix']['proxy_dbname'] %>
+DBName=<%= node['zabbix']['proxy_dbname'] %>
 
 ### Option: DBSchema
 #	Schema name. Used for IBM DB2 and PostgreSQL.
@@ -177,7 +177,7 @@ DBName=<%= ['zabbix']['proxy_dbname'] %>
 # Default:
 # DBUser=
 
-DBUser=<%= ['zabbix']['proxy_dbuser'] %>
+DBUser=<%= node['zabbix']['proxy_dbuser'] %>
 
 ### Option: DBPassword
 #	Database password. Ignored for SQLite.
@@ -185,7 +185,7 @@ DBUser=<%= ['zabbix']['proxy_dbuser'] %>
 #
 # Mandatory: no
 # Default:
-DBPassword=<%= ['zabbix']['proxy_dbpass'] %>
+DBPassword=<%= node['zabbix']['proxy_dbpass'] %>
 
 ### Option: DBSocket
 #	Path to MySQL socket.
