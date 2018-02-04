@@ -21,6 +21,13 @@ action :install do
       cookbook new_resource.cookbook
       variables(new_resource.variables)
     end
+  else
+    declare_resource(:template, '/etc/apache2/conf-enabled/apache.conf') do
+      source 'apache/apache.conf.erb'
+      owner 'root'
+      group 'root'
+      mode '0644'
+    end
   end
 end
 
