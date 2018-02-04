@@ -16,6 +16,7 @@ action :configure do
   else
     declare_resource(:template, "#{node['zabbix']['conf_dir']}/zabbix_agentd.conf") do
       source 'zabbix/zabbix_agentd.conf.erb'
+      cookbook 'zabbix'
       owner 'root'
       group 'root'
       mode '0644'

@@ -26,6 +26,7 @@ action :install do
     end
   else
     declare_resource(:template, "#{node['zabbix']['conf_dir']}/zabbix_proxy.conf") do
+      cookbook 'zabbix'
       source 'zabbix/zabbix_proxy.conf.erb'
       owner 'root'
       group 'root'

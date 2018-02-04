@@ -23,6 +23,7 @@ action :install do
     end
   else
     declare_resource(:template, '/etc/apache2/conf-enabled/apache.conf') do
+      cookbook 'zabbix'
       source 'apache/apache.conf.erb'
       owner 'root'
       group 'root'

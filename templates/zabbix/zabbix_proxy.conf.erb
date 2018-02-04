@@ -21,7 +21,7 @@
 # Default:
 # Server=
 
-Server=<%= ['zabbix']['proxy_server'] %>
+Server=<%= ['zabbix']['zabbix_server'] %>
 
 ### Option: ServerPort
 #	Port of Zabbix trapper on Zabbix server.
@@ -40,7 +40,7 @@ Server=<%= ['zabbix']['proxy_server'] %>
 # Default:
 # Hostname=
 
-Hostname=<%= ['zabbix']['proxy_hostname'] %>
+Hostname=<%= node['zabbix']['hostname'] %>
 
 ### Option: HostnameItem
 #	Item used for generating Hostname if it is undefined.

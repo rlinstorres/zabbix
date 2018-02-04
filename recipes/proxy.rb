@@ -16,6 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-zabbix_install_proxy 'foo' do
-  action :install
-end
+# Examples
+
+# zabbix_install_proxy 'foo' do
+#   action :install
+# end

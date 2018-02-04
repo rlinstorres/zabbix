@@ -16,10 +16,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-zabbix_install_agent 'zabbix-agent' do
-  action :install
-end
+# Examples
 
-zabbix_configure_agent 'zabbix' do
-  action :configure
-end
+# zabbix_install_agent 'zabbix-agent' do
+#   action :install
+# end
+
+# zabbix_configure_agent 'zabbix' do
+#   action :configure
+# end
