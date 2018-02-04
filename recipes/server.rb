@@ -41,6 +41,5 @@ end
 # end
 
 zabbix_install_server 'Jailson' do
-  version '3.6.1'
   action  :install
 end

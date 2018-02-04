@@ -20,3 +20,4 @@ default['zabbix']['server_active'] = 'localhost'
 
 # Defaults
 default['zabbix']['conf_dir'] = '/etc/zabbix'
+default['zabbix']['hostname'] = node['hostname']

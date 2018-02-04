@@ -52,9 +52,7 @@ describe 'zabbix::server' do
     end
 
     it 'Install Zabbix Server with custom resource' do
-      expect(chef_run).to install_zabbix_install_server('Jailson').with(
-        version: '3.6.1'
-      )
+      expect(chef_run).to install_zabbix_install_server('Jailson')
     end
   end
 end

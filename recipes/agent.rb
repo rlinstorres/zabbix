@@ -16,30 +16,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# include_recipe 'zabbix::repo'
-
-# apt_package 'zabbix-agent' do
-#   action :install
-# end
-
-# service 'zabbix-agent' do
-#   action :start
-# end
-
-# template "node['zabbix']['agent_conf_dir']/#{zabbix_agentd.conf}" do
-#   source 'zabbix_agentd.conf'
-#   owner 'root'
-#   group 'root'
-#   mode '0644'
-#   action :create
-# end
-
 zabbix_install_agent 'zabbix-agent' do
   action :install
 end
 
 zabbix_configure_agent 'zabbix' do
-  template 'zabbix/zabbix_agentd.conf'
-  cookbook 'zabbix'
   action :configure
 end
