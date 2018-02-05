@@ -109,7 +109,7 @@ Para s instalção do server do Zabbix os atributos disponíveis são:
 - `node['zabbix']['date_time_zone']` - Informações de timezone para serem renderizadas nos arquivos de configurações.
 
 
-Aqui vale uma uma nota, tanto na instalação o proxy quanto do server estou utilizando o guards para validar se o DB existe e se a tabela "Users" está criada, se este requisito for atendido o CHEF vai fazer um bypass na task que é referente ao setuo inicial do bando, que esta descrito na documentação oficial do [Zabbix](https://www.zabbix.com/documentation/3.4/manual/installation/install_from_packages/debian_ubuntu).
+Aqui vale uma uma nota, tanto na instalação o Proxy quanto do Server estou utilizando o *guards* para validar se o DB existe e se a tabela "*Users*" está criada, se este requisito for atendido, o CHEF vai fazer um *bypass* na task que é referente ao setup inicial do banco, que esta descrito na documentação oficial do [Zabbix](https://www.zabbix.com/documentation/3.4/manual/installation/install_from_packages/debian_ubuntu).
  
 
 
