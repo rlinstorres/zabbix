@@ -12,7 +12,6 @@ default['zabbix']['proxy_dbhost'] = 'localhost'
 default['zabbix']['proxy_dbpass'] = 'zabbix_proxy'
 default['zabbix']['proxy_dbname'] = 'zabbix_proxy'
 default['zabbix']['zabbix_server'] = 'localhost'
-default['zabbix']['proxy_hostname'] = 'Zabbix proxy'
 
 # Zabbix Agent confs
 default['zabbix']['server'] = 'localhost'
@@ -22,7 +21,7 @@ default['zabbix']['server_active'] = 'localhost'
 default['zabbix']['conf_dir'] = '/etc/zabbix'
 default['zabbix']['hostname'] = node['hostname']
 
-# Informations to php.ini
+# Informations to php.ini to frontend recipe
 default['zabbix_php']['directives'] = {}
 default['zabbix_php']['ini']['template'] = 'php/php.ini.erb'
 default['zabbix_php']['ini']['cookbook'] = 'zabbix'

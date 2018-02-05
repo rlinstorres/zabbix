@@ -2,7 +2,7 @@
 # Cookbook:: .
 # Recipe:: frontend
 #
-# Copyright:: 2018, Jailson Silva
+# Copyright:: 2018, Jailson Silva / Rodrigo Torres
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
