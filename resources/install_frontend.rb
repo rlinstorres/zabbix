@@ -30,6 +30,16 @@ action :install do
       mode '0644'
     end
   end
+
+  declare_resource(:template, "#{node['zabbix_php']['conf_dir']}/php.ini") do
+    source node['zabbix_php']['ini']['template']
+    cookbook node['zabbix_php']['ini']['cookbook']
+    owner 'root'
+    group node['root_group']
+    mode '0644'
+    manage_symlink_source true
+    variables(directives: node['zabbix_php']['directives'])
+  end
 end
 
 action :remove do

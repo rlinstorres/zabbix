@@ -21,3 +21,10 @@ default['zabbix']['server_active'] = 'localhost'
 # Defaults
 default['zabbix']['conf_dir'] = '/etc/zabbix'
 default['zabbix']['hostname'] = node['hostname']
+
+# Informations to php.ini
+default['zabbix_php']['directives'] = {}
+default['zabbix_php']['ini']['template'] = 'php/php.ini.erb'
+default['zabbix_php']['ini']['cookbook'] = 'zabbix'
+default['zabbix_php']['conf_dir'] = '/etc/php/7.0/apache2'
+default['zabbix_php']['date.timezone'] = 'America/Sao_Paulo'
