@@ -19,11 +19,7 @@ services: docker
 
 env:
   matrix:
-  - INSTANCE=upstream-repo-ubuntu-1604
-  - INSTANCE=distro-packages-ubuntu-1604
-  - INSTANCE=source-ubuntu-1604
-  - INSTANCE=modules-ubuntu-1604
-  - INSTANCE=passenger-ubuntu-1604
+  - INSTANCE=ubuntu-1604
 
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
