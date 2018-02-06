@@ -1,6 +1,8 @@
 ---
 driver:
   name: docker
+  binary: docker
+  use_sudo: false
 
 provisioner:
   name: chef_zero
