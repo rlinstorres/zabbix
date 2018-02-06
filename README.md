@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/jailson-silva/zabbix.svg?branch=master)](https://travis-ci.org/jailson-silva/zabbix)
+
+
+
 # Zabbix
 
 
