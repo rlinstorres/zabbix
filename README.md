@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jailson-silva/zabbix.svg?branch=master)](https://travis-ci.org/jailson-silva/zabbix)
+[![Build Status](https://travis-ci.org/jailson-silva/zabbix.svg?branch=master)](https://travis-ci.org/jailson-silva/zabbix) [![License](https://img.shields.io/badge/license-Apache_2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 
 
