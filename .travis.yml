@@ -9,7 +9,7 @@ addons:
       - chefdk
 
 # Don't `bundle install` which takes about 1.5 mins
-install: echo "skip bundle install"
+install: gem install kitchen-docker
 
 branches:
   only:
