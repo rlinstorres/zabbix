@@ -16,8 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Examples
-
-# zabbix_install_server 'Jailson' do
-#   action :install
-# end
+zabbix_install_server 'zabbix-server-mysql' do
+  action :install
+end

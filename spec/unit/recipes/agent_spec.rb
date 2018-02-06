@@ -23,7 +23,7 @@ describe 'zabbix::agent' do
     let(:chef_run) do
       # for a complete list of available platforms and versions see:
       # https://github.com/customink/fauxhai/blob/master/PLATFORMS.md
-      runner = ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '16.04')
+      runner = ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '16.04', step_into: ['zabbix_install_agent'])
       runner.converge(described_recipe)
     end
 
@@ -39,16 +39,12 @@ describe 'zabbix::agent' do
       expect(chef_run).to configure_zabbix_configure_agent('zabbix')
     end
 
-    # it 'Include repo recipe' do
-    #   expect(chef_run).to include_recipe('zabbix::repo')
-    # end
+    it 'Include repo recipe' do
+      expect(chef_run).to include_recipe('zabbix::repo')
+    end
 
-    # it 'Install Agent package' do
-    #   expect(chef_run).to install_apt_package('zabbix-agent')
-    # end
-
-    # it 'Start zabbix-agent' do
-    #   expect(chef_run).to start_service('zabbix-agent')
-    # end
+    it 'Install Agent package' do
+      expect(chef_run).to install_apt_package('zabbix-agent')
+    end
   end
 end

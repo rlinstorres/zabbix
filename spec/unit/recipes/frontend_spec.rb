@@ -48,7 +48,7 @@ describe 'zabbix::frontend' do
     # end
 
     it 'Install and configure zabbix proxy' do
-      expect(chef_run).to install_zabbix_install_frontend('zabbix-proxy')
+      expect(chef_run).to install_zabbix_install_frontend('zabbix-frontend-php')
     end
   end
 end

@@ -52,7 +52,7 @@ describe 'zabbix::server' do
     end
 
     it 'Install Zabbix Server with custom resource' do
-      expect(chef_run).to install_zabbix_install_server('Jailson')
+      expect(chef_run).to install_zabbix_install_server('zabbix-server-mysql')
     end
   end
 end

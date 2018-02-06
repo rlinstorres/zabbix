@@ -18,6 +18,6 @@
 
 # Examples
 
-# zabbix_install_frontend 'zabbix-frontend-php' do
-#   action :install
-# end
+zabbix_install_frontend 'zabbix-frontend-php' do
+  action :install
+end
