@@ -31,10 +31,6 @@ describe 'zabbix::proxy' do
       expect { chef_run }.to_not raise_error
     end
 
-    before do
-      stub_command("mysql -uzabbix_proxy -hlocalhost -pzabbix_proxy -Dzabbix_proxy -e'describe users'").and_return(false)
-    end
-
     it 'Include Recipe repos' do
       expect(chef_run).to include_recipe('zabbix::repo')
     end
@@ -43,16 +39,12 @@ describe 'zabbix::proxy' do
       expect(chef_run).to install_apt_package('zabbix-proxy-mysql')
     end
 
-    it 'Initial DB import' do
-      expect(chef_run).to run_execute('Initial DB import')
-    end
-
     it 'Create Template zabbix conf' do
       expect(chef_run).to create_template('/etc/zabbix/zabbix_proxy.conf')
     end
 
     it 'Install proxy as custom resource' do
-      expect(chef_run).to install_zabbix_install_proxy('foo')
+      expect(chef_run).to install_zabbix_install_proxy('zabbix-proxy')
     end
   end
 end

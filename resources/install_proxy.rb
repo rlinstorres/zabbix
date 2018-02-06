@@ -11,12 +11,6 @@ action :install do
     action :install
   end
 
-  execute 'Initial DB import' do
-    command "zcat /usr/share/doc/zabbix-server-mysql/create.sql.gz | mysql -u#{node['zabbix']['proxy_dbuser']} -h#{node['zabbix']['proxy_dbhost']} -p#{node['zabbix']['proxy_dbpass']} -D#{node['zabbix']['proxy_dbname']}"
-    action :run
-    not_if "mysql -u#{node['zabbix']['proxy_dbuser']} -h#{node['zabbix']['proxy_dbhost']} -p#{node['zabbix']['proxy_dbpass']} -D#{node['zabbix']['proxy_dbname']} -e'describe users'"
-  end
-
   if new_resource.template
     # use declare_resource so we can have a property also named template
     declare_resource(:template, "#{node['zabbix']['conf_dir']}/zabbix_agentd.conf") do

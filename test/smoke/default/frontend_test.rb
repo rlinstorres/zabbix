@@ -12,7 +12,7 @@ unless os.windows?
   end
 end
 
-# This is an example test, replace it with your own test.
-describe port(80), :skip do
-  it { should_not be_listening }
+# Decribe zabbix package
+describe package('zabbix-frontend-php') do
+  it { should be_installed }
 end

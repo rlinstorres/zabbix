@@ -1,6 +1,6 @@
 # # encoding: utf-8
 
-# Inspec test for recipe .::server
+# Inspec test for recipe .::dbsetup
 
 # The Inspec reference, with examples and extensive documentation, can be
 # found at http://inspec.io/docs/reference/resources/
@@ -12,9 +12,7 @@ unless os.windows?
   end
 end
 
-# Php modules
-%w(php7.0-xml php7.0-bcmath php7.0-mbstring zabbix-server-mysql).each do |pkg|
-  describe package(pkg) do
-    it { should be_installed }
-  end
+# This is an example test, replace it with your own test.
+describe port(80), :skip do
+  it { should_not be_listening }
 end

@@ -1,6 +1,6 @@
 #
-# Cookbook:: zabbix
-# Spec:: Frontend
+# Cookbook:: .
+# Spec:: default
 #
 # Copyright:: 2018, Jailson Silva
 #
@@ -18,7 +18,7 @@
 
 require 'spec_helper'
 
-describe 'zabbix::frontend' do
+describe 'zabbix::dbsetup' do
   context 'When all attributes are default, on an Ubuntu 16.04' do
     let(:chef_run) do
       # for a complete list of available platforms and versions see:
@@ -27,24 +27,16 @@ describe 'zabbix::frontend' do
       runner.converge(described_recipe)
     end
 
-    it 'converges successfully' do
-      expect { chef_run }.to_not raise_error
-    end
-
-    # it 'Include Recipe repos' do
-    #   expect(chef_run).to include_recipe('zabbix::repo')
+    # it 'converges successfully' do
+    #   expect { chef_run }.to_not raise_error
     # end
 
-    # it 'Install zabbix frontend' do
-    #   expect(chef_run).to install_apt_package('zabbix-frontend-php')
+    # before do
+    #   stub_command("mysql -uzabbix_proxy -hlocalhost -pzabbix_proxy -Dzabbix_proxy -e'describe users'").and_return(true)
     # end
 
-    # it 'Create Template zabbix conf' do
-    #   expect(chef_run).to create_template('/etc/apache2/conf-enabled/zabbix.conf')
+    # it 'Initial DB import' do
+    #   expect(chef_run).to run_execute('Initial DB Proxy import')
     # end
-
-    it 'Install and configure zabbix proxy' do
-      expect(chef_run).to install_zabbix_install_frontend('zabbix-frontend-php')
-    end
   end
 end

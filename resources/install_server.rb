@@ -11,10 +11,10 @@ action :install do
     action :install
   end
 
-  execute 'Initial DB import' do
-    command "zcat /usr/share/doc/zabbix-server-mysql/create.sql.gz | mysql -u#{node['zabbix']['dbuser']} -h#{node['zabbix']['dbhost']} -p#{node['zabbix']['dbpass']} -D#{node['zabbix']['dbname']}"
-    action :run
-    not_if "mysql -u#{node['zabbix']['dbuser']} -h#{node['zabbix']['dbhost']} -p#{node['zabbix']['dbpass']} -D#{node['zabbix']['dbname']} -e'describe users'"
+  node['zabbix']['php_modules'].each do |pkg|
+    apt_package pkg do
+      action :install
+    end
   end
 
   if new_resource.template

@@ -31,10 +31,6 @@ describe 'zabbix::default' do
       expect { chef_run }.to_not raise_error
     end
 
-    before do
-      stub_command("mysql -uzabbix -hlocalhost -pzabbix -Dzabbix -e'describe users'").and_return(true)
-    end
-
     it 'Included Recipes' do
       expect(chef_run).to include_recipe('zabbix::repo')
     end

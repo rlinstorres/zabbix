@@ -31,20 +31,12 @@ describe 'zabbix::server' do
       expect { chef_run }.to_not raise_error
     end
 
-    before do
-      stub_command("mysql -uzabbix -hlocalhost -pzabbix -Dzabbix -e'describe users'").and_return(false)
-    end
-
     it 'Include Recipe repos' do
       expect(chef_run).to include_recipe('zabbix::repo')
     end
 
     it 'Install zabbix Server' do
       expect(chef_run).to install_apt_package('zabbix-server-mysql')
-    end
-
-    it 'Initial DB import' do
-      expect(chef_run).to run_execute('Initial DB import')
     end
 
     it 'Create Template zabbix_server_conf' do
